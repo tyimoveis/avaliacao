@@ -256,12 +256,12 @@
       transform: translateY(0);
       opacity: 1;
     }
-    .layer-transition transition-all duration-500 ease-in-out {
+    .layer-transition.transition-all.duration-500.ease-in-out {
       transition: opacity 0.5s ease, transform 0.5s ease;
       opacity: 0;
       transform: translateY(20px);
     }
-    .layer-transition transition-all duration-500 ease-in-out.show {
+    .layer-transition.transition-all.duration-500.ease-in-out.show {
       opacity: 1;
       transform: translateY(0);
     }
@@ -303,31 +303,33 @@
     }
   </style>
 
-<style>
-  #progress-bar {
-    height: 8px;
-    background: linear-gradient(to right, #3B82F6, #10B981);
-    border-radius: 9999px;
-    transition: width 0.4s ease;
-  }
-  .step-indicator {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-  }
-  .step-indicator span {
-    flex: 1;
-    text-align: center;
-    font-size: 0.75rem;
-    color: #6B7280;
-  }
-  .step-indicator span.active {
-    font-weight: bold;
-    color: #3B82F6;
-  }
-</style>
+  <style>
+    #progress-bar {
+      height: 8px;
+      background: linear-gradient(to right, #3B skutecznie
 
-<script src="https://unpkg.com/feather-icons"></script>
+82F6, #10B981);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+    }
+    .step-indicator span {
+      flex: 1;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #6B7280;
+    }
+    .step-indicator span.active {
+      font-weight: bold;
+      color: #3B82F6;
+    }
+  </style>
+
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
   <div class="container mx-auto p-4 relative">
@@ -337,17 +339,16 @@
       </svg>
     </button>
 
-    
-<div class="step-indicator">
-  <span id="step1" class="active">1. Dados Básicos</span>
-  <span id="step2">2. Detalhes</span>
-  <span id="step3">3. Finalização</span>
-</div>
-<div class="w-full bg-gray-300 rounded-full">
-  <div id="progress-bar" style="width: 33%;"></div>
-</div>
+    <div class="step-indicator">
+      <span id="step1" class="active">1. Dados Básicos</span>
+      <span id="step2">2. Detalhes</span>
+      <span id="step3">3. Finalização</span>
+    </div>
+    <div class="w-full bg-gray-300 rounded-full">
+      <div id="progress-bar" style="width: 33%;"></div>
+    </div>
 
-<div class="form-container">
+    <div class="form-container">
       <div class="form-header">
         <h2 class="text-2xl md:text-3xl font-bold text-center text-blue-700 dark:text-blue-400">Calculadora de Valor - Gleba Palhano</h2>
         <p class="text-center text-sm md:text-base mt-1">Descubra o Valor do Seu Imóvel</p>
@@ -403,10 +404,9 @@
           <div class="input-group">
             <input type="number" id="metragem" name="metragem" min="20" required class="w-full" placeholder=" " />
             <label for="metragem">Metragem (m²)</label>
-<div class="text-sm text-right text-gray-500 dark:text-gray-400 italic">
-  Valor médio do m² será calculado com base no padrão e idade.
-</div>
-
+            <div class="text-sm text-right text-gray-500 dark:text-gray-400 italic">
+              Valor médio do m² será calculado com base no padrão e idade.
+            </div>
           </div>
           <div class="input-group">
             <select id="tipo" name="tipo" required class="w-full">
@@ -541,14 +541,11 @@
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
           Anunciar com Especialista
         </button>
-      
-
-</form>
-<div class="mt-4">
-  <h3 class="text-center font-semibold text-base md:text-lg">Histórico de Simulações</h3>
-  <canvas id="grafico" height="120" class="w-full mt-2 rounded-xl bg-white dark:bg-gray-800 p-4 shadow"></canvas>
-</div>
-
+      </form>
+      <div class="mt-4">
+        <h3 class="text-center font-semibold text-base md:text-lg">Histórico de Simulações</h3>
+        <canvas id="grafico" height="120" class="w-full mt-2 rounded-xl bg-white dark:bg-gray-800 p-4 shadow"></canvas>
+      </div>
     </div>
 
     <!-- Modal de Confirmação -->
@@ -574,12 +571,11 @@
       </div>
     </div>
 
-    
-<p class="text-xs text-red-700 dark:text-red-300 mt-4 font-semibold">
-  <p> Esta avaliação não possui valor judicial ou legal e é apenas uma estimativa baseada em dados de mercado.</p>
-</p>
+    <p class="text-xs text-black dark:text-black mt-4 font-semibold text-center">
+      Esta avaliação não possui valor judicial ou legal e é apenas uma estimativa baseada em dados de mercado.
+    </p>
 
-<footer class="text-center text-xs text-gray-600 dark:text-gray-400 mt-4">
+    <footer class="text-center text-xs text-gray-600 dark:text-gray-400 mt-4">
       <p>Estimativas baseadas em portais como ZAP Imóveis, Viva Real, ImovelWeb e dados de especialistas locais.</p>
       <p class="mt-2">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="text-blue-600 dark:text-blue-400 hover:underline" target="_blank">Saiba mais</a>.</p>
     </footer>
@@ -836,7 +832,7 @@
     }
 
     function displayResult(valorFinal) {
-  salvarSimulacao(valorFinal);
+      salvarSimulacao(valorFinal);
       console.log("Exibindo resultado: R$", valorFinal);
       const resultado = document.getElementById("resultado");
       const feedback = document.getElementById("feedback");
@@ -947,7 +943,7 @@
         console.log("Campos obrigatórios da camada 2 não preenchidos.");
         showNotification("Por favor, preencha todos os campos de detalhes do imóvel.");
         resultado.classList.remove("show");
-        feedback.classList.remove("show");
+        feedback.classList.remove unseren Feedback.");
         return;
       }
 
@@ -1193,118 +1189,113 @@
     });
   </script>
 
-<script>
-  function updateProgress(step) {
-    const bar = document.getElementById("progress-bar");
-    const steps = ["step1", "step2", "step3"];
-    steps.forEach((id, index) => {
-      const el = document.getElementById(id);
-      if (el) el.classList.remove("active");
-      if (index < step && el) el.classList.add("active");
-    });
-    if (bar) {
-      const widths = ["33%", "66%", "100%"];
-      bar.style.width = widths[step - 1] || "33%";
-    }
-  }
-
-  function detectStep() {
-    if (!document.getElementById("camada3").classList.contains("hidden")) return 3;
-    if (!document.getElementById("camada2").classList.contains("hidden")) return 2;
-    return 1;
-  }
-
-  const observer = new MutationObserver(() => {
-    updateProgress(detectStep());
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    observer.observe(document.getElementById("camada2"), { attributes: true });
-    observer.observe(document.getElementById("camada3"), { attributes: true });
-    updateProgress(1);
-  });
-</script>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const hour = new Date().getHours();
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if ((hour >= 18 || hour < 6) || prefersDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  });
-</script>
-
-
-<script>
-  async function buscarCEP() {
-    const cep = document.getElementById("cep").value.replace(/\D/g, '');
-    if (cep.length !== 8) return;
-    try {
-      const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      const data = await res.json();
-      if (data.erro) throw new Error("CEP não encontrado");
-      document.getElementById("rua").value = data.logradouro || "";
-      document.getElementById("bairro").value = data.bairro || "";
-    } catch (e) {
-      alert("Erro ao buscar CEP");
-    }
-  }
-</script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  let simHistory = JSON.parse(localStorage.getItem("simulacoes")) || [];
-
-  function salvarSimulacao(valor) {
-    const metragem = parseFloat(document.getElementById("metragem").value);
-    const tipo = document.getElementById("tipo").value;
-    const data = new Date().toLocaleDateString();
-    simHistory.push({ data, tipo, metragem, valor });
-    localStorage.setItem("simulacoes", JSON.stringify(simHistory));
-    atualizarGrafico();
-  }
-
-  function atualizarGrafico() {
-    const ctx = document.getElementById("grafico").getContext("2d");
-    const labels = simHistory.map(s => s.data + " - " + s.tipo);
-    const data = simHistory.map(s => s.valor);
-    if (window.chartRef) {
-      window.chartRef.data.labels = labels;
-      window.chartRef.data.datasets[0].data = data;
-      window.chartRef.update();
-    } else {
-      window.chartRef = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Valor estimado (R$)',
-            data: data,
-            fill: true,
-            borderColor: '#3B82F6',
-            backgroundColor: 'rgba(59, 130, 246, 0.2)',
-            tension: 0.2
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { display: false }
-          }
-        }
+  <script>
+    function updateProgress(step) {
+      const bar = document.getElementById("progress-bar");
+      const steps = ["step1", "step2", "step3"];
+      steps.forEach((id, index) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("active");
+        if (index < step && el) el.classList.add("active");
       });
+      if (bar) {
+        const widths = ["33%", "66%", "100%"];
+        bar.style.width = widths[step - 1] || "33%";
+      }
     }
-  }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    if (simHistory.length > 0) atualizarGrafico();
-  });
-</script>
+    function detectStep() {
+      if (!document.getElementById("camada3").classList.contains("hidden")) return 3;
+      if (!document.getElementById("camada2").classList.contains("hidden")) return 2;
+      return 1;
+    }
 
+    const observer = new MutationObserver(() => {
+      updateProgress(detectStep());
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      observer.observe(document.getElementById("camada2"), { attributes: true });
+      observer.observe(document.getElementById("camada3"), { attributes: true });
+      updateProgress(1);
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hour = new Date().getHours();
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if ((hour >= 18 || hour < 6) || prefersDark) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  </script>
+
+  <script>
+    async function buscarCEP() {
+      const cep = document.getElementById("cep").value.replace(/\D/g, '');
+      if (cep.length !== 8) return;
+      try {
+        const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await res.json();
+        if (data.erro) throw new Error("CEP não encontrado");
+        document.getElementById("rua").value = data.logradouro || "";
+        document.getElementById("bairro").value = data.bairro || "";
+      } catch (e) {
+        alert("Erro ao buscar CEP");
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    let simHistory = JSON.parse(localStorage.getItem("simulacoes")) || [];
+
+    function salvarSimulacao(valor) {
+      const metragem = parseFloat(document.getElementById("metragem").value);
+      const tipo = document.getElementById("tipo").value;
+      const data = new Date().toLocaleDateString();
+      simHistory.push({ data, tipo, metragem, valor });
+      localStorage.setItem("simulacoes", JSON.stringify(simHistory));
+      atualizarGrafico();
+    }
+
+    function atualizarGrafico() {
+      const ctx = document.getElementById("grafico").getContext("2d");
+      const labels = simHistory.map(s => s.data + " - " + s.tipo);
+      const data = simHistory.map(s => s.valor);
+      if (window.chartRef) {
+        window.chartRef.data.labels = labels;
+        window.chartRef.data.datasets[0].data = data;
+        window.chartRef.update();
+      } else {
+        window.chartRef = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Valor estimado (R$)',
+              data: data,
+              fill: true,
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              tension: 0.2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (simHistory.length > 0) atualizarGrafico();
+    });
+  </script>
 </body>
 </html>
