@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="light" data-theme="light">
+<html lang="pt-br" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,235 +8,95 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" loading="lazy">
   <style>
     :root {
-      --bg-color: #F3F4F6;
-      --form-bg: #E0E0E0;
-      --input-bg: #F7FAFC;
-      --text-color: #1F2937;
-      --primary-btn: #3B82F6;
-      --secondary-btn: #10B981;
-      --shadow-light: 8px 8px 16px rgba(163, 177, 198, 0.6), -8px -8px 16px rgba(255, 255, 255, 0.9);
-      --shadow-inset: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+      --primary-color: #3b82f6;
+      --text-color: #1f2937;
+      --bg-color: #f9fafb;
+      --input-bg: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     [data-theme="dark"] {
-      --bg-color: #1F2937;
-      --form-bg: #2D3748;
-      --input-bg: #4A5568;
-      --text-color: #F3F4F6;
-      --primary-btn: #60A5FA;
-      --secondary-btn: #34D399;
-      --shadow-light: 8px 8px 16px rgba(0, 0, 0, 0.4), -8px -8px 16px rgba(108, 122, 137, 0.3);
-      --shadow-inset: inset 4px 4px 8px rgba(0, 0, 0, 0.4), inset -4px -4px 8px rgba(108, 122, 137, 0.3);
+      --primary-color: #60a5fa;
+      --text-color: #e5e7eb;
+      --bg-color: #1f2937;
+      --input-bg: #374151;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
     }
     [data-theme="blue"] {
-      --bg-color: #E6F0FA;
-      --form-bg: #B3D4FC;
-      --input-bg: #EBF5FF;
-      --text-color: #1E3A8A;
-      --primary-btn: #1E40AF;
-      --secondary-btn: #3B82F6;
+      --primary-color: #1d4ed8;
+      --text-color: #1e3a8a;
+      --bg-color: #e0f2fe;
+      --input-bg: #f0f9ff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
     }
     body {
-      background: var(--bg-color) url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" opacity="0.1" fill="%231E40AF" viewBox="0 0 24 24"%3E%3Cpath d="M12 2l10 9H2l10-9zm0 2.618L4.738 11h14.524L12 4.618zM2 13v8a1 1 0 001 1h6v-5h6v5h6a1 1 0 001-1v-8H2zm11 7h-2v-3h2v3z"/%3E%3C/svg%3E') repeat;
       font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
       color: var(--text-color);
       transition: all 0.3s ease;
     }
-    .container {
-      padding-bottom: 1rem;
-    }
-    .form-container {
-      background: var(--form-bg);
-      border-radius: 1.5rem;
-      box-shadow: var(--shadow-light);
-      padding: 1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      min-height: fit-content;
-    }
-    .form-header {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
     .input-group {
       position: relative;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
     .input-group input,
     .input-group select,
     .input-group textarea {
-      background: var(--input-bg);
-      border: none;
-      border-radius: 0.75rem;
+      background-color: var(--input-bg);
+      border: 2px solid #d1d5db;
+      border-radius: 0.5rem;
       padding: 0.75rem;
-      font-size: 1rem;
-      color: var(--text-color);
-      box-shadow: var(--shadow-inset);
-      transition: all 0.3s ease;
+      width: 100%;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .input-group input:focus,
     .input-group select:focus,
     .input-group textarea:focus {
       outline: none;
-      box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2), inset -2px -2px 4px rgba(255, 255, 255, 0.3), 0 0 8px rgba(59, 130, 246, 0.5);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
     }
     .input-group label {
       position: absolute;
-      top: -0.5rem;
-      left: 1rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-color);
-      background: var(--form-bg);
-      padding: 0 0.25rem;
+      left: 0.75rem;
+      top: 0.75rem;
+      color: #6b7280;
+      pointer-events: none;
       transition: all 0.3s ease;
-    }
-    #notification {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    #notification.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #resultado {
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-color);
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    #resultado.show {
-      opacity: 1;
-      transform: translateY(0);
       background: var(--input-bg);
-      padding: 1rem;
-      border-radius: 0.75rem;
-      box-shadow: var(--shadow-inset);
+      padding: 0 0.25rem;
     }
-    #feedback {
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      opacity: 0;
-      transform: translateY(10px);
-      margin-top: 0.5rem;
-    }
-    #feedback.show {
-      opacity: 1;
-      transform: translateY(0);
+    .input-group input:not(:placeholder-shown) + label,
+    .input-group input:focus + label,
+    .input-group select:not(:placeholder-shown) + label,
+    .input-group select:focus + label,
+    .input-group textarea:not(:placeholder-shown) + label,
+    .input-group textarea:focus + label {
+      top: -0.75rem;
+      font-size: 0.75rem;
+      color: var(--primary-color);
     }
     .suggestions {
       position: absolute;
-      z-index: 10;
-      background: var(--form-bg);
-      border-radius: 0.75rem;
-      box-shadow: var(--shadow-light);
-      width: 100%;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--input-bg);
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
       max-height: 150px;
       overflow-y: auto;
-      transition: opacity 0.3s ease;
-      color: var(--text-color);
+      z-index: 10;
+      box-shadow: var(--shadow);
     }
     .suggestions div {
-      padding: 0.75rem;
+      padding: 0.5rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      transition: background 0.2s ease;
     }
     .suggestions div:hover {
-      background: var(--input-bg);
-      box-shadow: var(--shadow-inset);
-    }
-    .btn-modern {
-      background: var(--primary-btn);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 0.75rem;
-      padding: 0.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-      box-shadow: var(--shadow-light);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-modern:hover {
-      background: #2563EB;
-      transform: translateY(-2px);
-      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .btn-modern:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow-inset);
-    }
-    .btn-modern::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s ease, height 0.3s ease;
-      pointer-events: none;
-    }
-    .btn-modern:active::after {
-      width: 200px;
-      height: 200px;
-      transition: none;
-    }
-    [data-theme="dark"] .btn-modern:hover {
-      background: #3B82F6;
-    }
-    .btn-secondary {
-      background: var(--secondary-btn);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 0.75rem;
-      padding: 0.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-      box-shadow: var(--shadow-light);
-      transition: all 0.3s ease;
-    }
-    .btn-secondary:hover {
-      background: #059669;
-      transform: translateY(-2px);
-      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .btn-secondary:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow-inset);
-    }
-    .btn-gray {
-      background: #6B7280;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 0.75rem;
-      padding: 0.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-      box-shadow: var(--shadow-light);
-      transition: all 0.3s ease;
-    }
-    .btn-gray:hover {
-      background: #4B5563;
-      transform: translateY(-2px);
-      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .btn-gray:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow-inset);
+      background: #e5e7eb;
     }
     .spinner {
       display: none;
@@ -251,140 +111,105 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
-    .modal {
-      background: var(--form-bg);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-light);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translateY(-20px);
-    }
-    .modal.show {
-      transform: translateY(0);
-      opacity: 1;
-      animation: fadeInUp 0.3s ease-out;
-    }
-    .layer-transition.transition-all.duration-500.ease-in-out {
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .layer-transition.transition-all.duration-500.ease-in-out.show {
-      opacity: 1;
-      transform: translateY(0);
-      animation: slideIn 0.5s ease-out;
-    }
-    @media (min-width: 640px) {
-      .form-container {
-        padding: 1.5rem;
-      }
-      .form-header {
-        padding: 1rem;
-      }
-      .input-group {
-        margin-bottom: 1rem;
-      }
-      .input-group input,
-      .input-group select,
-      .input-group textarea {
-        padding: 1rem;
-        font-size: 1.125rem;
-      }
-      .input-group label {
-        font-size: 0.875rem;
-      }
-      .btn-modern,
-      .btn-secondary,
-      .btn-gray {
-        padding: 1rem;
-        font-size: 1.125rem;
-      }
-      .suggestions div {
-        padding: 1rem;
-      }
-      .spinner {
-        width: 1.25rem;
-        height: 1.25rem;
-      }
+    #cep-spinner {
+      display: none;
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      border: 3px solid var(--text-color);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
     @keyframes spin {
       to { transform: translateY(-50%) rotate(360deg); }
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .layer-transition {
+      opacity: 0;
+      transform: translateY(20px);
     }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .layer-transition.show {
+      opacity: 1;
+      transform: translateY(0);
     }
-    button:focus, input:focus, select:focus, textarea:focus {
-      outline: 2px solid #3B82F6;
-      outline-offset: 2px;
+    .modal {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .modal.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .modal:not(.show) {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      pointer-events: none;
+    }
+    .progress-bar {
+      transition: width 0.5s ease;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .notification {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .notification:not(.show) {
+      opacity: 0;
+      transform: translateY(-20px);
     }
   </style>
-
-  <style>
-    #progress-bar {
-      height: 8px;
-      background: linear-gradient(to right, #3B82F6, #10B981);
-      border-radius: 9999px;
-      transition: width 0.4s ease;
-    }
-    .step-indicator {
-      display: flex;
-      justify-content: space-between;
-      margin: 1rem 0;
-    }
-    .step-indicator span {
-      flex: 1;
-      text-align: center;
-      font-size: 0.75rem;
-      color: #6B7280;
-    }
-    .step-indicator span.active {
-      font-weight: bold;
-      color: #3B82F6;
-    }
-  </style>
-
-  <script src="https://unpkg.com/feather-icons" loading="lazy"></script>
+  <script src="https://unpkg.com/feather-icons" loading="lazy" onerror="console.warn('Feather Icons não carregado.');"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof feather !== "undefined") {
+        feather.replace();
+      } else {
+        console.warn("Feather Icons não disponível. Ícones podem não ser exibidos.");
+      }
+    });
+  </script>
 </head>
-<body>
-  <div class="container mx-auto p-4 relative">
-    <div class="absolute top-4 right-4">
-      <select id="theme-selector" class="p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-blue-500" aria-label="Selecionar tema">
+<body class="min-h-screen flex flex-col">
+  <!-- Cabeçalho -->
+  <header class="bg-white dark:bg-gray-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Calculadora de Valor - Gleba Palhano</h1>
+      <div class="flex items Stuart: To enable/disable this feature, go to your browser's developer tools, then navigate to Application > Storage > Local Storage or Session Storage, find the relevant storage item, and delete it. This will reset the theme to its default state. To re-enable the feature, you can revisit the site or refresh the page if the site automatically reapplies the theme setting.
+
+      <select id="theme-selector" class="p-2 border rounded dark:bg-gray-700 dark:text-white">
         <option value="light">Claro</option>
         <option value="dark">Escuro</option>
         <option value="blue">Azul</option>
       </select>
     </div>
+  </header>
 
-    <div class="step-indicator">
-      <span id="step1" class="active">1. Dados Básicos</span>
-      <span id="step2">2. Detalhes</span>
-      <span id="step3">3. Finalização</span>
-    </div>
-    <div class="w-full bg-gray-300 rounded-full">
-      <div id="progress-bar" style="width: 33%;"></div>
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex justify-center mb-6">
+      <p class="text-center text-gray-600 dark:text-gray-300">Esta avaliação é apenas uma estimativa. Para uma avaliação precisa, consulte um especialista.</p>
     </div>
 
-    <div class="form-container">
-      <div class="form-header">
-        <h2 class="text-2xl md:text-3xl font-bold text-center text-blue-700 dark:text-blue-400">Calculadora de Valor - Gleba Palhano</h2>
-        <p class="text-center text-sm md:text-base mt-1">Descubra o Valor do Seu Imóvel</p>
-        
-        <div id="notification" class="hidden bg-yellow-100 dark:bg-yellow-900 border border-yellow-500 dark:border-yellow-700 text-yellow-800 dark:text-yellow-200 p-3 rounded-lg flex items-center gap-2 mb-2 cursor-pointer" onclick="dismissNotification()">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          Por favor, concorde com os termos para ver o valor estimado.
+    <!-- Formulário -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+      <form id="formulario" action="https://formspree.io/f/xanoejrg" method="POST">
+        <!-- Progress Bar -->
+        <div class="mb-6">
+          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+            <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: 33%"></div>
+          </div>
         </div>
-      </div>
-
-      <form id="formulario" action="https://formspree.io/f/xanoejrg" method="POST" class="space-y-2">
-        <!-- Hidden inputs for action and interest -->
-        <input type="hidden" id="acao" name="acao" value="">
-        <input type="hidden" id="interesse_venda" name="interesse_venda" value="">
 
         <!-- Primeira Camada: Informações Básicas -->
         <div id="camada1" class="space-y-2 layer-transition transition-all duration-500 ease-in-out show">
@@ -403,6 +228,11 @@
           <div class="input-group">
             <input type="text" id="edificio" name="edificio" class="w-full" placeholder=" " />
             <label for="edificio">Nome do edifício</label>
+          </div>
+          <div class="input-group">
+            <input type="text" id="cep" name="cep" required class="w-full" placeholder=" " pattern="\d{5}-\d{3}" oninput="buscarCEP()" />
+            <label for="cep">CEP</label>
+            <div id="cep-spinner" class="spinner"></div>
           </div>
           <div class="input-group relative">
             <button type="button" id="geolocation-btn" class="absolute right-2 top-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200" aria-label="Preencher endereço com localização atual">
@@ -424,264 +254,294 @@
         </div>
 
         <!-- Segunda Camada: Detalhes do Imóvel -->
-        <div id="camada2" class="space-y-2 layer-transition transition-all duration-500 ease-in-out hidden">
-          <p class="text-center text-sm md:text-base">Complete os detalhes para maior precisão</p>
+        <div id="camada2" class="space-y-2 layer-transition hidden">
           <div class="input-group">
-            <input type="number" id="metragem" name="metragem" min="20" required class="w-full" placeholder=" " />
+            <input type="number" id="metragem" name="metragem" required min="20" class="w-full" placeholder=" " />
             <label for="metragem">Metragem (m²)</label>
-            <div class="text-sm text-right text-gray-500 dark:text-gray-400 italic">
-              Valor médio do m² será calculado com base no padrão e idade.
-            </div>
           </div>
-          <div class="input-group relative">
+          <div class="input-group">
             <select id="tipo" name="tipo" required class="w-full">
-              <option value="">Selecione</option>
+              <option value="" disabled selected></option>
               <option value="medio">Médio</option>
               <option value="intermediario">Intermediário</option>
               <option value="alto">Alto padrão</option>
             </select>
-            <label for="tipo">Padrão do imóvel</label>
-            <span class="absolute right-2 top-2 group">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              <span class="hidden group-hover:block absolute right-0 top-8 bg-gray-800 text-white text-xs rounded p-2 w-48 z-10">
-                Médio: Acabamento básico, sem luxo. Intermediário: Acabamento de qualidade média. Alto padrão: Materiais premium e design sofisticado.
-              </span>
-            </span>
+            <label for="tipo">Tipo de imóvel</label>
           </div>
           <div class="input-group">
             <select id="quartos" name="quartos" required class="w-full">
-              <option value="">Selecione</option>
+              <option value="" disabled selected></option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
-              <option value="4">4 ou mais</option>
+              <option value="4+">4 ou mais</option>
             </select>
             <label for="quartos">Quartos</label>
           </div>
           <div class="input-group">
             <select id="suites" name="suites" required class="w-full">
-              <option value="">Selecione</option>
+              <option value="" disabled selected></option>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
-              <option value="3">3 ou mais</option>
+              <option value="3+">3 ou mais</option>
             </select>
             <label for="suites">Suítes</label>
           </div>
           <div class="input-group">
+            <select id="idade" name="idade" required class="w-full">
+              <option value="" disabled selected></option>
+              <option value="antigo">Mais de 10 anos</option>
+              <option value="recente">5 a 10 anos</option>
+              <option value="novo">Menos de 5 anos</option>
+            </select>
+            <label for="idade">Idade do imóvel</label>
+          </div>
+          <div class="input-group">
+            <select id="sacada" name="sacada" required class="w-full">
+              <option value="" disabled selected></option>
+              <option value="sim">Sim</option>
+              <option value="nao">Não</option>
+            </select>
+            <label for="sacada">Sacada</label>
+          </div>
+          <div class="input-group">
             <select id="andar" name="andar" required class="w-full">
-              <option value="">Selecione</option>
-              <option value="baixo">Baixo (1 a 5)</option>
-              <option value="medio">Médio (6 a 15)</option>
-              <option value="alto">Alto (16 ou mais)</option>
+              <option value="" disabled selected></option>
+              <option value="baixo">Baixo (1-5)</option>
+              <option value="medio">Médio (6-10)</option>
+              <option value="alto">Alto (11+)</option>
             </select>
             <label for="andar">Andar</label>
           </div>
           <div class="input-group">
-            <select id="garagem" name="garagem" required class="w-full">
-              <option value="">Selecione</option>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3 ou mais</option>
-            </select>
-            <label for="garagem">Vagas de garagem</label>
-          </div>
-          <div class="input-group">
             <select id="lazer" name="lazer" required class="w-full">
-              <option value="">Selecione</option>
+              <option value="" disabled selected></option>
               <option value="sim">Sim</option>
               <option value="nao">Não</option>
             </select>
-            <label for="lazer">Área de lazer completa?</label>
+            <label for="lazer">Área de lazer</label>
           </div>
           <div class="input-group">
             <select id="vista" name="vista" required class="w-full">
-              <option value="">Selecione</option>
+              <option value="" disabled selected></option>
               <option value="sim">Sim</option>
               <option value="nao">Não</option>
             </select>
-            <label for="vista">Vista para o Lago Igapó?</label>
-          </div>
-          <div class="input-group">
-            <select id="sacada" name="sacada" required class="w-full">
-              <option value="">Selecione</option>
-              <option value="sim">Sim</option>
-              <option value="nao">Não</option>
-            </select>
-            <label for="sacada">Sacada com churrasqueira?</label>
+            <label for="vista">Vista privilegiada</label>
           </div>
           <div class="input-group">
             <select id="mobilia" name="mobilia" required class="w-full">
-              <option value="">Selecione</option>
+              <option value="" disabled selected></option>
               <option value="sim">Sim</option>
               <option value="nao">Não</option>
             </select>
-            <label for="mobilia">Armários planejados?</label>
+            <label for="mobilia">Mobiliado</label>
           </div>
           <div class="input-group">
-            <select id="idade" name="idade" required class="w-full">
-              <option value="">Selecione</option>
-              <option value="novo">0 a 5 anos</option>
-              <option value="recente">6 a 10 anos</option>
-              <option value="antigo">11 a 20 anos</option>
+            <select id="garagem" name="garagem" required class="w-full">
+              <option value="" disabled selected></option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3+">3 ou mais</option>
             </select>
-            <label for="idade">Idade do prédio</label>
+            <label for="garagem">Vagas de garagem</label>
           </div>
         </div>
 
-        <!-- Terceira Camada: Observações e Envio -->
-        <div id="camada3" class="space-y-2 layer-transition transition-all duration-500 ease-in-out hidden">
-          <div class="input-group">
-            <textarea id="obs" name="obs" rows="4" class="w-full" placeholder=" "></textarea>
-            <label for="obs">Observações</label>
-          </div>
-          <div class="flex items-start space-x-2">
-            <input type="checkbox" id="concordancia" name="concordancia" required class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
-            <label for="concordancia" class="text-xs">
-              Concordo com a coleta e uso dos meus dados pessoais conforme a <a href="/politica-privacidade" class="text-blue-600 dark:text-blue-400 hover:underline" target="_blank">Política de Privacidade</a>.
-            </label>
+        <!-- Terceira Camada: Confirmação -->
+        <div id="camada3" class="space-y-2 layer-transition hidden">
+          <div class="flex items-center">
+            <input type="checkbox" id="concordancia" name="concordancia" class="h-4 w-4 text-blue-600 border-gray-300 rounded" />
+            <label for="concordancia" class="ml-2 text-sm text-gray-600 dark:text-gray-300">Concordo em compartilhar meus dados com um especialista para uma avaliação mais precisa.</label>
           </div>
         </div>
 
-        <button type="button" id="botaoCalcular" class="w-full btn-modern flex items-center justify-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m-3 4v6m4-6h-8m4-8v2m0 16v2m6-10h2m-18 0h2m10 6h2m-18 0h2"></path></svg>
-          Calcular Valor de Venda
-        </button>
-        <div id="feedback" class="space-y-2 opacity-0">
-          <div class="input-group">
-            <select id="avaliacao_valor" name="avaliacao_valor" class="w-full">
-              <option value="">Selecione</option>
-              <option value="muito_alto">Muito alto</option>
-              <option value="adequado">Adequado</option>
-              <option value="muito_baixo">Muito baixo</option>
-            </select>
-            <label for="avaliacao_valor">O que achou do valor estimado?</label>
-          </div>
-          <div class="input-group">
-            <textarea id="comentarios_avaliacao" name="comentarios_avaliacao" rows="3" class="w-full" placeholder=" "></textarea>
-            <label for="comentarios_avaliacao">Comentários (opcional)</label>
-          </div>
-          <div id="resultado" class="text-center font-semibold text-base md:text-lg mt-2 flex items-center justify-center gap-2"></div>
-          <button type="button" id="botaoFeedback" onclick="enviarFeedback()" class="w-full btn-modern flex items-center justify-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            Enviar Feedback
+        <!-- Resultado e Feedback -->
+        <div id="resultado" class="mt-4 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg hidden"></div>
+        <div id="feedback" class="mt-4 hidden">
+          <label for="feedback-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Comentários adicionais</label>
+          <textarea id="feedback-input" name="feedback" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+        </div>
+
+        <!-- Botões -->
+        <div class="mt-6 flex justify-end space-x-4">
+          <button type="button" id="botaoCalcular" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Calcular Valor
+          </button>
+          <button type="submit" id="botaoAnunciar" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hidden">
+            Anunciar com Especialista
           </button>
         </div>
-        <button type="button" id="botaoAnunciar" onclick="showModal()" class="w-full btn-secondary flex items-center justify-center gap-2 hidden">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-          Anunciar com Especialista
-        </button>
       </form>
-      <div class="mt-4">
-        <h3 class="text-center font-semibold text-base md:text-lg">Histórico de Simulações</h3>
-        <canvas id="grafico" height="120" class="w-full mt-2 rounded-xl bg-white dark:bg-gray-800 p-4 shadow"></canvas>
+    </div>
+
+    <!-- Notificação -->
+    <div id="notification" class="fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg notification hidden">
+      <p id="notification-message"></p>
+    </div>
+
+    <!-- Modal de Cálculo -->
+    <div id="calc-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center modal hidden">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full">
+        <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Calculando...</h2>
+        <div class="spinner w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
       </div>
     </div>
 
-    <!-- Modal de Confirmação -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-      <div class="modal max-w-md w-full">
-        <h3 class="text-lg md:text-xl font-bold text-center">Confirmar Envio</h3>
-        <p class="text-center text-sm md:text-base mt-2">Deseja enviar as informações para nossos especialistas?</p>
-        <div class="mt-4 flex justify-end gap-4">
-          <button onclick="closeModal()" class="btn-gray">Cancelar</button>
-          <button onclick="submitForm()" class="btn-secondary">Confirmar</button>
-        </div>
-      </div>
+    <!-- Histórico de Simulações -->
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Histórico de Simulações</h2>
+      <canvas id="grafico" class="w-full h-64"></canvas>
     </div>
+  </main>
 
-    <!-- Modal de Simulação de Cálculo -->
-    <div id="calc-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-      <div class="modal max-w-md w-full">
-        <h3 class="text-lg md:text-xl font-bold text-center">Calculando Valor do Imóvel</h3>
-        <div id="calc-summary" class="text-sm md:text-base mt-2 text-center"></div>
-        <div class="mt-4 flex justify-center">
-          <div class="spinner w-8 h-8 border-4 border-blue-600 border-t-transparent"></div>
-        </div>
-      </div>
+  <!-- Rodapé -->
+  <footer class="bg-gray-100 dark:bg-gray-800 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-600 dark:text-gray-300">&copy; 2025 Calculadora de Valor - Gleba Palhano. Todos os direitos reservados.</p>
     </div>
-
-    <div class="w-full flex justify-center">
-      <p class="text-xs text-black dark:text-black mt-4 font-semibold text-center max-w-3xl">
-        Esta avaliação não possui valor judicial ou legal e é apenas uma estimativa baseada em dados de mercado.
-      </p>
-    </div>
-
-    <footer class="text-center text-xs text-gray-600 dark:text-gray-400 mt-4">
-      <p>Estimativas baseadas em portais como ZAP Imóveis, Viva Real, ImovelWeb e dados de especialistas locais.</p>
-      <p class="mt-2">Data © OpenStreetMap contributors, ODbL 1.0. <a href="https://osm.org/copyright" class="text-blue-600 dark:text-blue-400 hover:underline" target="_blank">Saiba mais</a>.</p>
-    </footer>
-  </div>
+  </footer>
 
   <script>
-    // Banco de dados simulado de imóveis
-    const bancoImoveis = {
-      "Edifício Lago Igapó": {
-        rua: "Av. Madre Leônia Milito",
-        numero: "123",
-        bairro: "Gleba Palhano",
-        valorM2: 13000,
-        idade: "novo",
-        lazer: "sim",
-        vista: "sim",
-        tipo: "alto"
-      },
-      "Torre Palhano": {
-        rua: "Rua Martin Luther King",
-        numero: "456",
-        bairro: "Gleba Palhano",
-        valorM2: 7500,
-        idade: "antigo",
-        lazer: "nao",
-        vista: "nao",
-        tipo: "medio"
-      }
-    };
+    // Banco de dados simulado
+    const bancoImoveis = [
+      { rua: "Avenida Maringá", numero: "123", bairro: "Gleba Palhano", tipo: "alto", valorM2: 12000, idade: "novo", lazer: "sim", vista: "sim" },
+      { rua: "Rua Sergipe", numero: "456", bairro: "Gleba Palhano", tipo: "medio", valorM2: 8500, idade: "recente", lazer: "nao", vista: "nao" }
+    ];
 
-    // Cache local para Nominatim
+    function buscarImovel(rua, numero, bairro) {
+      console.log("Buscando imóvel:", { rua, numero, bairro });
+      return bancoImoveis.find(imovel =>
+        imovel.rua.toLowerCase() === rua.toLowerCase() &&
+        imovel.numero === numero &&
+        imovel.bairro.toLowerCase() === bairro.toLowerCase()
+      );
+    }
+
+    // Cache para sugestões de ruas
     const cache = new Map();
 
-    // Máscara para telefone
+    // Notificações
+    function showNotification(message) {
+      console.log("Exibindo notificação:", message);
+      const notification = document.getElementById("notification");
+      const notificationMessage = document.getElementById("notification-message");
+      if (!notification || !notificationMessage) {
+        console.error("Elementos de notificação não encontrados.");
+        return;
+      }
+      notificationMessage.textContent = message;
+      notification.classList.add("show");
+      setTimeout(() => {
+        notification.classList.remove("show");
+      }, 3000);
+    }
+
+    function dismissNotification() {
+      const notification = document.getElementById("notification");
+      if (notification) {
+        notification.classList.remove("show");
+      }
+    }
+
+    // Máscara de telefone
     function applyPhoneMask() {
-      console.log("Aplicando máscara de telefone...");
       const telefoneInput = document.getElementById("telefone");
       if (!telefoneInput) {
         console.error("Elemento #telefone não encontrado.");
-        alert("Erro: Campo de telefone não encontrado.");
         return;
       }
-      telefoneInput.addEventListener("input", function(e) {
+      telefoneInput.addEventListener("input", (e) => {
         let value = e.target.value.replace(/\D/g, "");
         if (value.length > 11) value = value.slice(0, 11);
         if (value.length <= 10) {
-          value = value.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+          value = value.replace(/(\d{2})(\d{0,4})(\d{0,4})/, "($1) $2-$3");
         } else {
-          value = value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+          value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
         }
-        e.target.value = value;
+        e.target.value = value.trim();
       });
     }
 
-    // Tema personalizável
+    // Validação em tempo real
+    function validateInput(input, validationFn, errorMessage) {
+      if (!input) {
+        console.warn(`Input não encontrado: ${input?.id}`);
+        return;
+      }
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "text-red-600 dark:text-red-400 text-xs mt-1";
+      input.parentElement.appendChild(errorDiv);
+      input.addEventListener("input", () => {
+        if (!validationFn(input.value)) {
+          errorDiv.textContent = errorMessage;
+          input.classList.add("border-red-500");
+        } else {
+          errorDiv.textContent = "";
+          input.classList.remove("border-red-500");
+        }
+      });
+    }
+
+    // Tema
     function initTheme() {
-      console.log("Inicializando tema...");
-      const savedTheme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", savedTheme);
       const themeSelector = document.getElementById("theme-selector");
       if (!themeSelector) {
         console.error("Elemento #theme-selector não encontrado.");
-        alert("Erro: Seletor de tema não encontrado.");
         return;
       }
+      const savedTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
       themeSelector.value = savedTheme;
       themeSelector.addEventListener("change", (e) => {
-        document.documentElement.setAttribute("data-theme", e.target.value);
-        localStorage.setItem("theme", e.target.value);
+        const theme = e.target.value;
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+        console.log("Tema alterado para:", theme);
       });
     }
 
-    // Debounce para limitar requisições
+    // Geolocalização
+    function initGeolocation() {
+      const geolocationBtn = document.getElementById("geolocation-btn");
+      const ruaInput = document.getElementById("rua");
+      const numeroInput = document.getElementById("numero");
+      const bairroInput = document.getElementById("bairro");
+      const spinner = document.getElementById("rua-spinner");
+      if (!geolocationBtn || !ruaInput || !numeroInput || !bairroInput || !spinner) {
+        console.error("Elementos de geolocalização não encontrados.");
+        return;
+      }
+      geolocationBtn.addEventListener("click", async () => {
+        console.log("Solicitando geolocalização...");
+        spinner.style.display = "block";
+        try {
+          const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          });
+          const { latitude, longitude } = position.coords;
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1`,
+            { headers: { "User-Agent": "CalculadoraImoveisGlebaPalhano/1.0" } }
+          );
+          if (!response.ok) throw new Error(`Erro na API: ${response.status}`);
+          const data = await response.json();
+          ruaInput.value = data.address?.road || "";
+          numeroInput.value = data.address?.house_number || "";
+          bairroInput.value = data.address?.suburb || "Gleba Palhano";
+          console.log("Geolocalização bem-sucedida:", data.address);
+        } catch (error) {
+          console.error("Erro na geolocalização:", error);
+          showNotification("Não foi possível obter a localização. Digite manualmente.");
+        } finally {
+          spinner.style.display = "none";
+        }
+      });
+    }
+
+    // Buscar sugestões de ruas com Nominatim
     let debounceTimeout;
     function debounce(func, wait) {
       return function (...args) {
@@ -690,50 +550,41 @@
       };
     }
 
-    // Buscar sugestões de ruas com Nominatim
     const fetchRuaSuggestions = debounce(async () => {
       console.log("Buscando sugestões de ruas...");
       const query = document.getElementById("rua")?.value.trim();
       const suggestionsDiv = document.getElementById("rua-suggestions");
       const spinner = document.getElementById("rua-spinner");
-
       if (!query || !suggestionsDiv || !spinner) {
         console.error("Elementos #rua, #rua-suggestions ou #rua-spinner não encontrados.");
-        alert("Erro: Campos de autocomplete não encontrados.");
+        showNotification("Erro: Campos de autocomplete não encontrados.");
         return;
       }
-
       if (query.length < 3) {
         suggestionsDiv.classList.add("hidden");
         suggestionsDiv.replaceChildren();
         spinner.style.display = "none";
         return;
       }
-
       const cacheKey = `rua:${query.toLowerCase()}`;
       if (cache.has(cacheKey)) {
         displayRuaSuggestions(cache.get(cacheKey));
         return;
       }
-
       spinner.style.display = "block";
       try {
         const response = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)},Londrina&format=json&countrycodes=br&limit=3&addressdetails=1&namedetails=1`,
-          {
-            headers: {
-              "User-Agent": "CalculadoraImoveisGlebaPalhano",
-            },
-          }
+          { headers: { "User-Agent": "CalculadoraImoveisGlebaPalhano/1.0" } }
         );
-        if (!response.ok) throw new Error(`Erro na API do Nominatim: ${response.status}`);
+        if (!response.ok) throw new Error(`Erro na API: ${response.status}`);
         const data = await response.json();
         cache.set(cacheKey, data);
         displayRuaSuggestions(data);
       } catch (error) {
-        console.error("Erro ao buscar sugestões de ruas:", error);
-        suggestionsDiv.classList.add("hidden");
-        suggestionsDiv.innerHTML = '<div class="p-2 text-red-600">Erro ao carregar sugestões. Tente novamente.</div>';
+        console.error("Erro ao buscar sugestões:", error);
+        suggestionsDiv.innerHTML = '<div class="p-2 text-red-600">Erro ao carregar sugestões. Digite manualmente.</div>';
+        suggestionsDiv.classList.remove("hidden");
       } finally {
         spinner.style.display = "none";
       }
@@ -747,12 +598,10 @@
         return;
       }
       suggestionsDiv.replaceChildren();
-
       if (!data || data.length === 0) {
         suggestionsDiv.classList.add("hidden");
         return;
       }
-
       data.forEach(item => {
         const suggestion = document.createElement("div");
         suggestion.innerHTML = `<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg> ${item.display_name.split(",")[0]}`;
@@ -768,214 +617,241 @@
       suggestionsDiv.classList.remove("hidden");
     }
 
-    // Geolocalização
-    function initGeolocation() {
-      const geoButton = document.getElementById("geolocation-btn");
-      if (!geoButton) return;
-      geoButton.addEventListener("click", async () => {
-        if (!navigator.geolocation) {
-          showNotification("Geolocalização não suportada pelo navegador.");
-          return;
-        }
-        navigator.geolocation.getCurrentPosition(
-          async position => {
-            const { latitude, longitude } = position.coords;
-            try {
-              const response = await fetch(
-                `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1`,
-                { headers: { "User-Agent": "CalculadoraImoveisGlebaPalhano" } }
-              );
-              const data = await response.json();
-              document.getElementById("rua").value = data.address.road || "";
-              document.getElementById("bairro").value = data.address.suburb || "Gleba Palhano";
-              document.getElementById("numero").focus();
-            } catch (error) {
-              showNotification("Erro ao obter localização. Tente novamente.");
-            }
-          },
-          () => showNotification("Permissão de geolocalização negada.")
-        );
-      });
-    }
-
-    function buscarImovel(rua, numero, bairro) {
-      console.log("Buscando imóvel:", { rua, numero, bairro });
-      for (let key in bancoImoveis) {
-        const imovel = bancoImoveis[key];
-        if (imovel.rua === rua && imovel.numero === numero && imovel.bairro === bairro) {
-          return imovel;
-        }
-      }
-      return null;
-    }
-
-    function submitCalcularValorForm() {
-      console.log("Enviando formulário com ação: Calcular Valor");
-      const formulario = document.getElementById("formulario");
-      const acao = document.getElementById("acao");
-      if (formulario && ac Historicado") {
-        acao.value = "Calcular Valor";
-        formulario.submit();
-      } else {
-        console.error("Elemento #formulario ou #acao não encontrado.");
-      }
-    }
-
-    function showNotification(message) {
-      console.log("Exibindo notificação:", message);
-      const notification = document.getElementById("notification");
-      if (notification) {
-        notification.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> ${message}`;
-        notification.classList.remove("hidden");
-        notification.classList.add("show");
-        setTimeout(dismissNotification, 5000);
-      }
-    }
-
-    function dismissNotification() {
-      console.log("Fechando notificação...");
-      const notification = document.getElementById("notification");
-      if (notification) {
-        notification.classList.remove("show");
-        setTimeout(() => notification.classList.add("hidden"), 300);
-      }
-    }
-
-    function showCalcModal(valorFinal) {
-      console.log("Exibindo modal de cálculo...");
-      const modal = document.getElementById("calc-modal");
-      const summary = document.getElementById("calc-summary");
-      if (!modal || !summary) {
-        console.error("Elemento #calc-modal ou #calc-summary não encontrado.");
-        alert("Erro: Modal de cálculo não encontrado.");
+    // Buscar endereço por CEP
+    async function buscarCEP() {
+      console.log("Buscando CEP...");
+      const cepInput = document.getElementById("cep");
+      const ruaInput = document.getElementById("rua");
+      const bairroInput = document.getElementById("bairro");
+      const spinner = document.getElementById("cep-spinner");
+      if (!cepInput || !ruaInput || !bairroInput || !spinner) {
+        console.error("Elementos #cep, #rua, #bairro ou #cep-spinner não encontrados.");
+        showNotification("Erro: Campos de endereço não encontrados.");
         return;
       }
-      const edificio = document.getElementById("edificio").value.trim() || "Não especificado";
-      const rua = document.getElementById("rua").value.trim();
-      const numero = document.getElementById("numero").value.trim();
-      const bairro = document.getElementById("bairro").value.trim();
-      const metragem = document.getElementById("metragem").value;
-      const quartos = document.getElementById("quartos").value;
-      const suites = document.getElementById("suites").value;
-      const andar = document.getElementById("andar").value;
-      const garagem = document.getElementById("garagem").value;
-      const lazer = document.getElementById("lazer").value;
-      const vista = document.getElementById("vista").value;
-      const sacada = document.getElementById("sacada").value;
-      const mobilia = document.getElementById("mobilia").value;
-      const idade = document.getElementById("idade").value;
-      summary.innerHTML = `
-        Imóvel no edifício ${edificio}, na rua ${rua}, ${numero}, ${bairro}.<br>
-        Metragem: ${metragem} m²<br>
-        Quartos: ${quartos}<br>
-        Suítes: ${suites}<br>
-        Andar: ${andar}<br>
-        Vagas de garagem: ${garagem}<br>
-        Área de lazer: ${lazer}<br>
-        Vista para o Lago Igapó: ${vista}<br>
-        Sacada com churrasqueira: ${sacada}<br>
-        Armários planejados: ${mobilia}<br>
-        Idade do prédio: ${idade}
-      `;
-      modal.classList.remove("hidden");
-      setTimeout(() => modal.querySelector(".modal").classList.add("show"), 10);
-      setTimeout(() => {
-        modal.querySelector(".modal").classList.remove("show");
-        setTimeout(() => {
-          modal.classList.add("hidden");
-          displayResult(valorFinal);
-        }, 300);
-      }, 2500);
-    }
-
-    function displayResult(valorFinal) {
-      salvarSimulacao(valorFinal);
-      console.log("Exibindo resultado: R$", valorFinal);
-      const resultado = document.getElementById("resultado");
-      const feedback = document.getElementById("feedback");
-      const botaoAnunciar = document.getElementById("botaoAnunciar");
-      const botaoCalcular = document.getElementById("botaoCalcular");
-      if (resultado && feedback && botaoAnunciar && botaoCalcular) {
-        resultado.innerHTML = `<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Valor estimado: R$ ${valorFinal.toLocaleString('pt-BR')}`;
-        resultado.classList.add("show");
-        feedback.classList.add("show");
-        botaoAnunciar.classList.remove("hidden");
-        botaoCalcular.classList.add("hidden");
-      } else {
-        console.error("Elementos #resultado, #feedback, #botaoAnunciar ou #botaoCalcular não encontrados.");
+      const cep = cepInput.value.replace(/\D/g, '');
+      if (cep.length !== 8) {
+        return;
+      }
+      spinner.style.display = "block";
+      try {
+        const viaCepResponse = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const viaCepData = await viaCepResponse.json();
+        if (viaCepData.erro) {
+          throw new Error("CEP não encontrado.");
+        }
+        ruaInput.value = viaCepData.logradouro || "";
+        bairroInput.value = viaCepData.bairro || "Gleba Palhano";
+        const query = `${viaCepData.logradouro}, Londrina, Paraná, Brasil`;
+        const nominatimResponse = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&countrycodes=br&limit=1&addressdetails=1`,
+          { headers: { "User-Agent": "CalculadoraImoveisGlebaPalhano/1.0" } }
+        );
+        if (!nominatimResponse.ok) {
+          throw new Error(`Erro na API Nominatim: ${nominatimResponse.status}`);
+        }
+        const nominatimData = await nominatimResponse.json();
+        if (nominatimData.length > 0) {
+          ruaInput.value = nominatimData[0].address?.road || viaCepData.logradouro;
+          bairroInput.value = nominatimData[0].address?.suburb || viaCepData.bairro || "Gleba Palhano";
+        }
+      } catch (error) {
+        console.error("Erro ao buscar CEP:", error);
+        showNotification("CEP inválido ou não encontrado. Digite o endereço manualmente.");
+      } finally {
+        spinner.style.display = "none";
       }
     }
 
-    function calcularValor() {
-      console.log("Iniciando cálculo do valor...");
+    // Habilitar botão Calcular
+    function enableCalcularButton() {
+      console.log("Verificando se o botão Calcular deve ser habilitado...");
+      const camada1 = document.getElementById("camada1");
+      const camada2 = document.getElementById("camada2");
+      if (!camada1 || !camada2) {
+        console.error("Elementos #camada1 ou #camada2 não encontrados.");
+        return;
+      }
+      let allFilled = true;
+      if (!camada1.classList.contains("hidden")) {
+        const inputsCamada1 = camada1.querySelectorAll("input[required]");
+        inputsCamada1.forEach(input => {
+          if (!input.value.trim() || (input.id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) || (input.id === "telefone" && !/\(\d{2}\)\s\d{4,5}-\d{4}/.test(input.value)) || (input.id === "cep" && !/\d{5}-\d{3}/.test(input.value))) {
+            allFilled = false;
+          }
+        });
+      } else if (!camada2.classList.contains("hidden")) {
+        const inputsCamada2 = camada2.querySelectorAll("input[required], select[required]");
+        inputsCamada2.forEach(input => {
+          if (!input.value.trim() || (input.id === "metragem" && parseFloat(input.value) < 20)) {
+            allFilled = false;
+          }
+        });
+      }
+      const botaoCalcular = document.getElementById("botaoCalcular");
+      if (botaoCalcular) {
+        botaoCalcular.disabled = !allFilled;
+        botaoCalcular.classList.toggle("opacity-50", !allFilled);
+        botaoAnunciar.classList.add("hidden");
+        console.log("Botão Calcular habilitado:", allFilled);
+      }
+    }
+
+    // Atualizar barra de progresso
+    function updateProgress(step) {
+      console.log("Atualizando progresso para etapa:", step);
+      const progressBar = document.getElementById("progress-bar");
+      if (!progressBar) {
+        console.error("Elemento #progress-bar não encontrado.");
+        return;
+      }
+      const progress = step === 2 ? 66 : step === 3 ? 100 : 33;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    // Exibir modal de cálculo
+    function showCalcModal(valor) {
+      console.log("Exibindo modal de cálculo com valor:", valor);
+      const modal = document.getElementById("calc-modal");
       const resultado = document.getElementById("resultado");
       const feedback = document.getElementById("feedback");
+      const botaoCalcular = document.getElementById("botaoCalcular");
+      const botaoAnunciar = document.getElementById("botaoAnunciar");
+      if (!modal || !resultado || !feedback || !botaoCalcular || !botaoAnunciar) {
+        console.error("Elementos do modal ou formulário não encontrados.");
+        showNotification("Erro: Interface incompleta.");
+        return;
+      }
+      modal.classList.add("show");
+      setTimeout(() => {
+        modal.classList.remove("show");
+        resultado.innerHTML = `O valor estimado do imóvel é <span class="font-bold">R$ ${valor.toLocaleString("pt-BR")}</span>.`;
+        resultado.classList.add("show");
+        feedback.classList.add("show");
+        botaoCalcular.classList.add("hidden");
+        botaoAnunciar.classList.remove("hidden");
+        salvarSimulacao(valor);
+      }, 1500);
+    }
+
+    // Salvar simulação
+    let simHistory = JSON.parse(localStorage.getItem("simulacoes")) || [];
+    function salvarSimulacao(valor) {
+      console.log("Salvando simulação com valor:", valor);
+      const metragem = parseFloat(document.getElementById("metragem").value);
+      const tipo = document.getElementById("tipo").value;
+      const data = new Date().toLocaleDateString();
+      simHistory.push({ data, tipo, metragem, valor });
+      localStorage.setItem("simulacoes", JSON.stringify(simHistory));
+      atualizarGrafico();
+    }
+
+    // Atualizar gráfico
+    function atualizarGrafico() {
+      console.log("Atualizando gráfico com histórico:", simHistory);
+      const ctx = document.getElementById("grafico")?.getContext("2d");
+      if (!ctx) {
+        console.warn("Canvas #grafico não encontrado.");
+        return;
+      }
+      const labels = simHistory.map(s => s.data + " - " + s.tipo);
+      const data = simHistory.map(s => s.valor);
+      if (window.chartRef) {
+        window.chartRef.data.labels = labels;
+        window.chartRef.data.datasets[0].data = data;
+        window.chartRef.update();
+      } else if (labels.length > 0) {
+        window.chartRef = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [{
+              label: "Valor estimado (R$)",
+              data: data,
+              fill: true,
+              borderColor: "#3B82F6",
+              backgroundColor: "rgba(59, 130, 246, 0.2)",
+              tension: 0.2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } }
+          }
+        });
+      }
+    }
+
+    // Calcular valor
+    function calcularValor() {
+      console.log("Iniciando cálculo do valor...");
       const camada1 = document.getElementById("camada1");
       const camada2 = document.getElementById("camada2");
       const camada3 = document.getElementById("camada3");
+      const concordancia = document.getElementById("concordancia");
+      const resultado = document.getElementById("resultado");
+      const feedback = document.getElementById("feedback");
       const botaoCalcular = document.getElementById("botaoCalcular");
       const botaoAnunciar = document.getElementById("botaoAnunciar");
-      const concordancia = document.getElementById("concordancia");
-
-      if (!resultado || !feedback || !camada1 || !camada2 || !camada3 || !botaoCalcular || !botaoAnunciar || !concordancia) {
-        console.error("Elementos do formulário não encontrados.");
-        alert("Erro: Elementos do formulário não encontrados.");
+      if (!camada1 || !camada2 || !camada3 || !concordancia || !resultado || !feedback || !botaoCalcular || !botaoAnunciar) {
+        console.error("Elementos do formulário não encontrados:", { camada1, camada2, camada3, concordancia, resultado, feedback, botaoCalcular, botaoAnunciar });
+        showNotification("Erro: Formulário incompleto.");
         return;
       }
-
-      // Validação da camada 1
-      const rua = document.getElementById("rua")?.value.trim();
-      const numero = document.getElementById("numero")?.value.trim();
-      const bairro = document.getElementById("bairro")?.value.trim();
+      // Validação camada 1
       const nome = document.getElementById("nome")?.value.trim();
       const email = document.getElementById("email")?.value.trim();
       const telefone = document.getElementById("telefone")?.value.trim();
-
-      console.log("Validação camada 1:", { nome, email, telefone, rua, numero, bairro });
-
+      const cep = document.getElementById("cep")?.value.trim();
+      const rua = document.getElementById("rua")?.value.trim();
+      const numero = document.getElementById("numero")?.value.trim();
+      const bairro = document.getElementById("bairro")?.value.trim();
+      console.log("Validação camada 1:", { nome, email, telefone, cep, rua, numero, bairro });
       if (!nome) {
-        console.log("Nome não preenchido.");
-        showNotification("Por favor, preencha o nome completo.");
-        resultado.classList.remove("show");
-        feedback.classList.remove("show");
+        showNotification("Preencha o nome completo.");
         return;
       }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        console.log("E-mail inválido.");
-        showNotification("Por favor, preencha um e-mail válido.");
-        resultado.classList.remove("show");
-        feedback.classList.remove("show");
+        showNotification("Preencha um e-mail válido.");
         return;
       }
       if (!telefone || !/\(\d{2}\)\s\d{4,5}-\d{4}/.test(telefone)) {
-        console.log("Telefone inválido.");
-        showNotification("Por favor, preencha um telefone válido (ex.: (12) 34567-8900).");
-        resultado.classList.remove("show");
-        feedback.classList.remove("show");
+        showNotification("Preencha um telefone válido (ex.: (12) 34567-8900).");
         return;
       }
-      if (!rua || !numero || !bairro) {
-        console.log("Endereço incompleto.");
-        showNotification("Por favor, preencha todos os campos de endereço (rua, número, bairro).");
-        resultado.classList.remove("show");
-        feedback.classList.remove("show");
+      if (!cep || !/\d{5}-\d{3}/.test(cep)) {
+        showNotification("Preencha um CEP válido (ex.: 12345-678).");
         return;
       }
-
-      // Exibir camada 2 se ainda não visível
+      if (!rua) {
+        showNotification("Preencha a rua.");
+        return;
+      }
+      if (!numero) {
+        showNotification("Preencha o número.");
+        return;
+      }
+      if (!bairro) {
+        showNotification("Preencha o bairro.");
+        return;
+      }
+      // Exibir camada 2
       if (camada2.classList.contains("hidden")) {
         console.log("Exibindo camada 2...");
+        camada1.classList.add("hidden");
+        camada1.classList.remove("show");
         camada2.classList.remove("hidden");
         camada2.classList.add("show");
-        botaoCalcular.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m-3 4v6m4-6h-8m4-8v2m0 16v2m6-10h2m-18 0h2m10 6h2m-18 0h2"></path></svg> Calcular Valor de Venda`;
+        updateProgress(2);
         resultado.innerHTML = "Preencha os detalhes para uma avaliação mais precisa.";
         resultado.classList.add("show");
         feedback.classList.remove("show");
+        botaoAnunciar.classList.add("hidden");
+        botaoCalcular.classList.remove("hidden");
         dismissNotification();
         return;
       }
-
-      // Validação da camada 2
+      // Validação camada 2
       const metragem = parseFloat(document.getElementById("metragem")?.value);
       const tipo = document.getElementById("tipo")?.value;
       const idade = document.getElementById("idade")?.value;
@@ -986,45 +862,43 @@
       const vista = document.getElementById("vista")?.value;
       const mobilia = document.getElementById("mobilia")?.value;
       const vagas = parseInt(document.getElementById("garagem")?.value);
-
       console.log("Validação camada 2:", { metragem, tipo, idade, sacada, suites, andar, lazer, vista, mobilia, vagas });
-
       if (!metragem || isNaN(metragem) || metragem < 20) {
-        console.log("Metragem inválida.");
-        showNotification("Por favor, preencha a metragem com um valor de pelo menos 20 m².");
-        resultado.classList.remove("show");
-        feedback.classList.remove("show");
+        showNotification("Preencha a metragem com um valor de pelo menos 20 m².");
         return;
       }
       if (!tipo || !idade || !sacada || isNaN(suites) || !andar || !lazer || !vista || !mobilia || isNaN(vagas)) {
-        console.log("Campos obrigatórios da camada 2 não preenchidos.");
-        showNotification("Por favor, preencha todos os campos de detalhes do imóvel.");
-        resultado.classList.remove("show");
-        feedback.classList.remove("show");
+        showNotification("Preencha todos os detalhes do imóvel.");
         return;
       }
-
       // Exibir camada 3
-      console.log("Exibindo camada 3...");
-      camada3.classList.remove("hidden");
-      camada3.classList.add("show");
-
+      if (camada3.classList.contains("hidden")) {
+        console.log("Exibindo camada 3...");
+        camada2.classList.add("hidden");
+        camada2.classList.remove("show");
+        camada3.classList.remove("hidden");
+        camada3.classList.add("show");
+        updateProgress(3);
+        resultado.innerHTML = "Confirme os termos para ver o valor estimado.";
+        resultado.classList.add("show");
+        feedback.classList.remove("show");
+        botaoAnunciar.classList.add("hidden");
+        botaoCalcular.classList.remove("hidden");
+        dismissNotification();
+        return;
+      }
       // Verificar concordância
-      console.log("Checkbox concordancia marcado?", concordancia.checked);
       if (!concordancia.checked) {
-        console.log("Checkbox de concordância não marcado.");
-        showNotification("Por favor, concorde com os termos para ver o valor estimado.");
+        showNotification("Concorde com os termos para continuar.");
         resultado.classList.remove("show");
         feedback.classList.remove("show");
         botaoAnunciar.classList.add("hidden");
         return;
       }
-
       // Cálculo do valor
       console.log("Calculando valor do imóvel...");
       const imovel = buscarImovel(rua, numero, bairro);
       let valorM2;
-
       if (imovel) {
         valorM2 = imovel.valorM2;
         document.getElementById("idade").value = imovel.idade;
@@ -1042,9 +916,7 @@
         }
         console.log("Imóvel não encontrado, usando valorM2 calculado:", valorM2);
       }
-
       let valorBase = metragem * valorM2;
-
       if (suites >= 2) valorBase *= 1.07;
       if (andar === "alto") valorBase *= 1.08;
       if (lazer === "sim") valorBase *= 1.06;
@@ -1055,185 +927,28 @@
         const valorPorVaga = tipo === "medio" ? 30000 : 60000;
         valorBase += vagasExtras * valorPorVaga;
       }
-
       let valorFinal = Math.round(valorBase);
-      // Aplica desconto com base no bairro e idade
       const bairroLower = bairro.toLowerCase();
       if (bairroLower === "jardim aurora" || bairroLower === "terra bonita") {
         console.log("Aplicando desconto de 30% para bairro:", bairro);
-        valorFinal = Math.round(valorBase * 0.7); // 30% desconto
+        valorFinal = Math.round(valorBase * 0.7);
       } else if (idade === "antigo") {
         console.log("Aplicando desconto de 15% para idade antiga:", idade);
-        valorFinal = Math.round(valorBase * 0.85); // 15% desconto
+        valorFinal = Math.round(valorBase * 0.85);
       } else {
         console.log("Aplicando desconto padrão de 10% para bairro:", bairro, "e idade:", idade);
-        valorFinal = Math.round(valorBase * 0.9); // 10% desconto
+        valorFinal = Math.round(valorBase * 0.9);
       }
-
-      // Exibir modal de simulação
-      console.log("Valor calculado, iniciando simulação: R$", valorFinal);
       showCalcModal(valorFinal);
     }
 
-    // Enviar feedback
-    async function enviarFeedback() {
-      console.log("Enviando feedback...");
-      const avaliacao = document.getElementById("avaliacao_valor")?.value;
-      const comentarios = document.getElementById("comentarios_avaliacao")?.value;
-      const resultado = document.getElementById("resultado");
-      const acao = document.getElementById("acao");
-      const formulario = document.getElementById("formulario");
-
-      if (!resultado || !acao || !formulario) {
-        console.error("Elemento #resultado, #acao ou #formulario não encontrado.");
-        alert("Erro: Elemento de resultado ou ação não encontrado.");
-        return;
-      }
-
-      if (!avaliacao && !comentarios) {
-        console.log("Feedback vazio.");
-        showNotification("Por favor, selecione uma avaliação ou adicione um comentário.");
-        resultado.classList.remove("show");
-        return;
-      }
-
-      try {
-        acao.value = "Feedback";
-        console.log("Enviando feedback com ação: Feedback");
-        const response = await fetch("https://formspree.io/f/xanoejrg", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            avaliacao_valor: avaliacao,
-            comentarios_avaliacao: comentarios,
-            acao: "Feedback",
-            _subject: "Feedback sobre Valor Estimado",
-          }),
-        });
-
-        if (response.ok) {
-          console.log("Feedback enviado com sucesso.");
-          resultado.innerHTML = `<div class="bg-green-100 dark:bg-green-900 border border-green-500 dark:border-green-700 text-green-800 dark:text-green-200 p-3 rounded-lg flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Feedback enviado com sucesso!</div>`;
-          resultado.classList.add("show");
-          document.getElementById("avaliacao_valor").value = "";
-          document.getElementById("comentarios_avaliacao").value = "";
-        } else {
-          throw new Error(`Erro ao enviar feedback: ${response.status}`);
-        }
-      } catch (error) {
-        console.error("Erro ao enviar feedback:", error);
-        showNotification("Erro ao enviar feedback. Tente novamente.");
-        resultado.classList.remove("show");
-      }
-    }
-
-    // Funções do Modal
-    function showModal() {
-      console.log("Exibindo modal...");
-      const modal = document.getElementById("modal");
-      const interesseVenda = document.getElementById("interesse_venda");
-      const acao = document.getElementById("acao");
-      const concordancia = document.getElementById("concordancia");
-      if (!modal || !interesseVenda || !acao || !concordancia) {
-        console.error("Elemento #modal, #interesse_venda, #acao ou #concordancia não encontrado.");
-        alert("Erro: Modal ou campos de ação/interesse não encontrados.");
-        return;
-      }
-      if (!concordancia.checked) {
-        console.log("Checkbox de concordância não marcado.");
-        showNotification("Por favor, concorde com os termos para prosseguir.");
-        return;
-      }
-      interesseVenda.value = "Sim";
-      acao.value = "Anunciar com Especialista";
-      console.log("interesse_venda definido como:", interesseVenda.value);
-      console.log("acao definido como:", acao.value);
-      modal.classList.remove("hidden");
-      setTimeout(() => modal.querySelector(".modal").classList.add("show"), 10);
-    }
-
-    function closeModal() {
-      console.log("Fechando modal...");
-      const modal = document.getElementById("modal");
-      const interesseVenda = document.getElementById("interesse_venda");
-      const acao = document.getElementById("acao");
-      if (!modal) {
-        console.error("Elemento #modal não encontrado.");
-        return;
-      }
-      modal.querySelector(".modal").classList.remove("show");
-      setTimeout(() => modal.classList.add("hidden"), 300);
-      if (interesseVenda) interesseVenda.value = "";
-      if (acao) acao.value = "";
-    }
-
-    function submitForm() {
-      console.log("Tentando enviar formulário...");
-      const concordancia = document.getElementById("concordancia");
-      const resultado = document.getElementById("resultado");
-      const formulario = document.getElementById("formulario");
-      const interesseVenda = document.getElementById("interesse_venda");
-      const acao = document.getElementById("acao");
-
-      if (!concordancia || !resultado || !formulario || !interesseVenda || !acao) {
-        console.error("Elementos #concordancia, #resultado, #formulario, #interesse_venda ou #acao não encontrados.");
-        alert("Erro: Elementos do formulário não encontrados.");
-        return;
-      }
-
-      if (!concordancia.checked) {
-        console.log("Checkbox de concordância não marcado para envio.");
-        showNotification("Por favor, concorde com a coleta de dados para prosseguir.");
-        resultado.classList.remove("show");
-        closeModal();
-        return;
-      }
-
-      console.log("Enviando formulário com interesse_venda:", interesseVenda.value, "e ação:", acao.value);
-      formulario.submit();
-    }
-
-    // Reativar botão Calcular Valor ao alterar qualquer campo
-    function enableCalcularButton() {
-      console.log("Reativando botão Calcular Valor...");
-      const botaoCalcular = document.getElementById("botaoCalcular");
-      const resultado = document.getElementById("resultado");
-      if (!botaoCalcular || !resultado) {
-        console.error("Elemento #botaoCalcular ou #resultado não encontrado.");
-        return;
-      }
-      botaoCalcular.classList.remove("hidden");
-      resultado.innerHTML = "";
-      resultado.classList.remove("show");
-      dismissNotification();
-    }
-
-    // Validação em tempo real
-    function validateInput(input, validationFn, errorMessage) {
-      const errorDiv = document.createElement("div");
-      errorDiv.className = "text-red-600 dark:text-red-400 text-xs mt-1";
-      input.parentElement.appendChild(errorDiv);
-      input.addEventListener("input", () => {
-        if (!validationFn(input.value)) {
-          errorDiv.textContent = errorMessage;
-          input.classList.add("border-red-500");
-        } else {
-          errorDiv.textContent = "";
-          input.classList.remove("border-red-500");
-        }
-      });
-    }
-
-    // Inicializar
+    // Inicialização
     document.addEventListener("DOMContentLoaded", () => {
       console.log("DOM carregado, inicializando...");
       try {
         applyPhoneMask();
         initTheme();
         initGeolocation();
-
         // Validação em tempo real
         validateInput(
           document.getElementById("email"),
@@ -1246,23 +961,25 @@
           "Formato: (XX) XXXXX-XXXX"
         );
         validateInput(
+          document.getElementById("cep"),
+          value => /\d{5}-\d{3}/.test(value),
+          "Formato: 12345-678"
+        );
+        validateInput(
           document.getElementById("metragem"),
           value => parseFloat(value) >= 20,
           "Metragem deve ser no mínimo 20 m²."
         );
-
-        // Adicionar event listeners para todos os campos do formulário
+        // Adicionar event listeners
         const inputs = document.querySelectorAll("#formulario input, #formulario select, #formulario textarea");
         if (inputs.length === 0) {
           console.error("Nenhum input encontrado no formulário.");
-          alert("Erro: Nenhum campo de formulário encontrado.");
+          showNotification("Erro: Formulário incompleto.");
         }
         inputs.forEach(input => {
           input.addEventListener("input", enableCalcularButton);
           input.addEventListener("change", enableCalcularButton);
         });
-
-        // Adicionar eventos click e touchstart para o botão Calcular Valor
         const botaoCalcular = document.getElementById("botaoCalcular");
         if (botaoCalcular) {
           botaoCalcular.addEventListener("click", calcularValor);
@@ -1270,122 +987,12 @@
             e.preventDefault();
             calcularValor();
           });
-        } else {
-          console.error("Elemento #botaoCalcular não encontrado.");
         }
+        if (simHistory.length > 0) atualizarGrafico();
       } catch (error) {
         console.error("Erro durante inicialização:", error);
-        alert("Erro ao inicializar o formulário.");
+        showNotification("Erro ao inicializar o formulário.");
       }
-    });
-  </script>
-
-  <script>
-    function updateProgress(step) {
-      const bar = document.getElementById("progress-bar");
-      const steps = ["step1", "step2", "step3"];
-      steps.forEach((id, index) => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove("active");
-        if (index < step && el) el.classList.add("active");
-      });
-      if (bar) {
-        const widths = ["33%", "66%", "100%"];
-        bar.style.width = widths[step - 1] || "33%";
-      }
-    }
-
-    function detectStep() {
-      if (!document.getElementById("camada3").classList.contains("hidden")) return 3;
-      if (!document.getElementById("camada2").classList.contains("hidden")) return 2;
-      return 1;
-    }
-
-    const observer = new MutationObserver(() => {
-      updateProgress(detectStep());
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      observer.observe(document.getElementById("camada2"), { attributes: true });
-      observer.observe(document.getElementById("camada3"), { attributes: true });
-      updateProgress(1);
-    });
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const hour = new Date().getHours();
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if ((hour >= 18 || hour < 6) || prefersDark) {
-        document.documentElement.setAttribute("data-theme", "dark");
-        localStorage.setItem("theme", "dark");
-      }
-    });
-  </script>
-
-  <script>
-    async function buscarCEP() {
-      const cep = document.getElementById("cep").value.replace(/\D/g, '');
-      if (cep.length !== 8) return;
-      try {
-        const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        const data = await res.json();
-        if (data.erro) throw new Error("CEP não encontrado");
-        document.getElementById("rua").value = data.logradouro || "";
-        document.getElementById("bairro").value = data.bairro || "";
-      } catch (e) {
-        alert("Erro ao buscar CEP");
-      }
-    }
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js" loading="lazy"></script>
-  <script>
-    let simHistory = JSON.parse(localStorage.getItem("simulacoes")) || [];
-
-    function salvarSimulacao(valor) {
-      const metragem = parseFloat(document.getElementById("metragem").value);
-      const tipo = document.getElementById("tipo").value;
-      const data = new Date().toLocaleDateString();
-      simHistory.push({ data, tipo, metragem, valor });
-      localStorage.setItem("simulacoes", JSON.stringify(simHistory));
-      atualizarGrafico();
-    }
-
-    function atualizarGrafico() {
-      const ctx = document.getElementById("grafico").getContext("2d");
-      const labels = simHistory.map(s => s.data + " - " + s.tipo);
-      const data = simHistory.map(s => s.valor);
-      if (window.chartRef) {
-        window.chartRef.data.labels = labels;
-        window.chartRef.data.datasets[0].data = data;
-        window.chartRef.update();
-      } else {
-        window.chartRef = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Valor estimado (R$)',
-              data: data,
-              fill: true,
-              borderColor: '#3B82F6',
-              backgroundColor: 'rgba(59, 130, 246, 0.2)',
-              tension: 0.2
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { display: false мальчик
-            }
-          }
-        });
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      if (simHistory.length > 0) atualizarGrafico();
     });
   </script>
 </body>
