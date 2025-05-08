@@ -169,14 +169,15 @@
       transform: translateY(-20px);
     }
   </style>
-  <script src="https://unpkg.com/feather-icons" loading="lazy" onerror="console.warn('Feather Icons não carregado.');"></script>
+  <!-- Feather Icons hospedado localmente (crie a pasta js/ e adicione feather.min.js) -->
+  <script src="js/feather.min.js" loading="lazy"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if (typeof feather !== "undefined") {
         feather.replace();
       } else {
-        console.warn("Feather Icons não disponível. Ícones podem não ser exibidos.");
+        console.warn("Feather Icons não carregado. Verifique se js/feather.min.js está no diretório correto.");
       }
     });
   </script>
@@ -186,13 +187,13 @@
   <header class="bg-white dark:bg-gray-800 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Calculadora de Valor - Gleba Palhano</h1>
-      <div class="flex items Stuart: To enable/disable this feature, go to your browser's developer tools, then navigate to Application > Storage > Local Storage or Session Storage, find the relevant storage item, and delete it. This will reset the theme to its default state. To re-enable the feature, you can revisit the site or refresh the page if the site automatically reapplies the theme setting.
-
-      <select id="theme-selector" class="p-2 border rounded dark:bg-gray-700 dark:text-white">
-        <option value="light">Claro</option>
-        <option value="dark">Escuro</option>
-        <option value="blue">Azul</option>
-      </select>
+      <div class="flex items-center">
+        <select id="theme-selector" class="p-2 border rounded dark:bg-gray-700 dark:text-white">
+          <option value="light">Claro</option>
+          <option value="dark">Escuro</option>
+          <option value="blue">Azul</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -204,6 +205,7 @@
     <!-- Formulário -->
     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <form id="formulario" action="https://formspree.io/f/xanoejrg" method="POST">
+        <!-- NOTA: Configure um endpoint válido no Formspree (https://formspree.io/) e substitua o action acima -->
         <!-- Progress Bar -->
         <div class="mb-6">
           <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -400,7 +402,7 @@
   <!-- Rodapé -->
   <footer class="bg-gray-100 dark:bg-gray-800 py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-gray-600 dark:text-gray-300">&copy; 2025 Calculadora de Valor - Gleba Palhano. Todos os direitos reservados.</p>
+      <p class="text-gray-600 dark:text-gray-300">© 2025 Calculadora de Valor - Gleba Palhano. Todos os direitos reservados.</p>
     </div>
   </footer>
 
@@ -668,6 +670,7 @@
       console.log("Verificando se o botão Calcular deve ser habilitado...");
       const camada1 = document.getElementById("camada1");
       const camada2 = document.getElementById("camada2");
+      const botaoAnunciar = document.getElementById("botaoAnunciar");
       if (!camada1 || !camada2) {
         console.error("Elementos #camada1 ou #camada2 não encontrados.");
         return;
@@ -951,49 +954,4 @@
         initGeolocation();
         // Validação em tempo real
         validateInput(
-          document.getElementById("email"),
-          value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
-          "Por favor, insira um e-mail válido."
-        );
-        validateInput(
-          document.getElementById("telefone"),
-          value => /\(\d{2}\)\s\d{4,5}-\d{4}/.test(value),
-          "Formato: (XX) XXXXX-XXXX"
-        );
-        validateInput(
-          document.getElementById("cep"),
-          value => /\d{5}-\d{3}/.test(value),
-          "Formato: 12345-678"
-        );
-        validateInput(
-          document.getElementById("metragem"),
-          value => parseFloat(value) >= 20,
-          "Metragem deve ser no mínimo 20 m²."
-        );
-        // Adicionar event listeners
-        const inputs = document.querySelectorAll("#formulario input, #formulario select, #formulario textarea");
-        if (inputs.length === 0) {
-          console.error("Nenhum input encontrado no formulário.");
-          showNotification("Erro: Formulário incompleto.");
-        }
-        inputs.forEach(input => {
-          input.addEventListener("input", enableCalcularButton);
-          input.addEventListener("change", enableCalcularButton);
-        });
-        const botaoCalcular = document.getElementById("botaoCalcular");
-        if (botaoCalcular) {
-          botaoCalcular.addEventListener("click", calcularValor);
-          botaoCalcular.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            calcularValor();
-          });
-        }
-        if (simHistory.length > 0) atualizarGrafico();
-      } catch (error) {
-        console.error("Erro durante inicialização:", error);
-        showNotification("Erro ao inicializar o formulário.");
-      }
-    });
-  </script>
-</body>
-</html>
+          document.getElementById("email
